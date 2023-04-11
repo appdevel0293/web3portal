@@ -29,7 +29,7 @@ function App() {
   const getProvider = async () => {
     
     //if phantom wallet exist
-    if (isPhantomInstalled) {
+    if (!isPhantomInstalled) {
       window.open('https://phantom.app/', '_blank');
       return;
     }
