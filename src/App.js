@@ -5,6 +5,8 @@ function App() {
 
   var account_client = null;
 
+  
+
 
   var phantomProviderEVM = null;
 
@@ -90,7 +92,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Mint and Verify NFT
+          WELCOME TO WEB3 PORTAL
         </p>
         <button onClick={testingtx} >Send TX </button>
       </header>
