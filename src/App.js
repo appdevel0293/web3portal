@@ -3,15 +3,11 @@ import Web3 from 'web3';
 
 function App() {
 
-  //create var to save account
   var account_client = null;
 
-  //var web3 = null; 
 
-  //Get provider with Polygon and Mumbai - QuickNode RPC
   var phantomProviderEVM = null;
 
-  //create const to set provider, chain and RPC
   const quicknodeRPCConfig = {
     chainId: '0x13881',
     chainName: 'Polygon',
@@ -20,15 +16,12 @@ function App() {
     rpcUrls: ['https://red-multi-valley.matic-testnet.discover.quiknode.pro/61b21728fa928158390362bfe247eab7ee8c68e7/'],
   };
 
-  //Verify if phantom exist
   const isPhantomInstalled = window?.phantom?.ethereum?.isPhantom;
   console.log(isPhantomInstalled);
 
 
-  //async function to get provider and change chain and RPC
   const getProvider = async () => {
     
-    //if phantom wallet exist
     if (!isPhantomInstalled) {
       window.open('https://phantom.app/', '_blank');
       return;
@@ -43,26 +36,20 @@ function App() {
           method: 'eth_requestAccounts'
         }).then((accounts) => {
           
-          //get account to Mint and Send NFT
           account_client = accounts[0];
 
-          // Permission granted, switch the network to Polygon Mumbai
           provider.request({
             method: 'wallet_switchEthereumChain',
             params: [quicknodeRPCConfig]
           }).then(() => {
             
-            //send log to verify account and provider
             console.log(account_client);
 
             if(phantomProviderEVM===null){
               phantomProviderEVM = provider;
-             // web3 = new Web3(phantomProviderEVM);
               console.log("asignProvider",phantomProviderEVM);
             }
             
-            // return the provider
-            //return provider;
 
           }).catch((error) => {
             console.error(error);
@@ -75,11 +62,9 @@ function App() {
     
   };
   
-  //Get provider with Polygon and Mumbai - QuickNode RPC
   getProvider();
   
   
-  //Create a Tx example in Polygon Mumbai network - QuickNode RPC
   async function testingtx () {
     console.log("send tx",account_client);
     console.log("phantomprovider=>",phantomProviderEVM);
@@ -97,7 +82,6 @@ function App() {
       ],
     });
 
-    //log to see tx result
     console.log("result_tx=>",result);
   }
 
